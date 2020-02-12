@@ -33,10 +33,10 @@ if (isset($_POST['login-submit'])){
         session_start();
         $_SESSION['userID'] = $username;
         $_SESSION['userName'] = $name;
-        header("Location: main.php?done=success");
+        header("Location: index.php?done=success");
       }
       else {
-        header("Location: main.php?error=wrongpassword");
+        header("Location: index.php?error=wrongpassword");
       }
     }
 

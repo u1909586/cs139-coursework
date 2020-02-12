@@ -3,7 +3,7 @@
     <h1>Main Page</h1>
     <?php
       if (isset($_SESSION['userID'])) {
-        include('list.php');
+        echo "Hi you are logged in";
       }
       else {
         echo '<h1>hi your logged out</h1>';
