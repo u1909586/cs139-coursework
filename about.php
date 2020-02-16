@@ -4,4 +4,4 @@
     at the University Of Warwick. The website is currently in development, wait for future updates. :)</p>
 </main>
 
-<?php require 'footer.php'; ?>
+<?php #require 'footer.php'; ?>

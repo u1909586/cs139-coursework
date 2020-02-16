@@ -9,4 +9,4 @@
         echo '<h1>hi your logged out</h1>';
       } ?>
   </main>
-<?php require 'footer.php'; ?>
+<?php #require 'footer.php'; ?>

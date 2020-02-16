@@ -22,19 +22,14 @@
         </ul>
         <?php if (isset($_SESSION['userID'])) { ?>
           <div class="header-login">
-            <a>Hello <?php echo $_SESSION['userName']; ?></a>
+            <p>Hello <?php echo $_SESSION['userName']; ?></p>
             <form action="logout.inc.php" method="post">
               <button type="submit" name="logout-submit">Logout</button>
             </form>
           </div>
         <?php } else { ?>
           <div class="header-login">
-            <form action="login.inc.php" method="post">
-              <input type="text" name="username" placeholder="Username...">
-              <input type="password" name="pwd" placeholder="Password...">
-              <button type="submit" name="login-submit">Login</button>
-            </form>
-
+            <a href="login.php">Log in</a>
             <a href="register.php">Signup</a>
           </div>
         <?php } ?>
