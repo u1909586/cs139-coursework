@@ -3,10 +3,10 @@
     <h1>Main Page</h1>
     <?php
       if (isset($_SESSION['userID'])) {
-        echo "Hi you are logged in";
+        require 'logged_in.php';
       }
       else {
-        echo '<h1>hi your logged out</h1>';
+        require 'logged_out.php';
       } ?>
   </main>
 <?php #require 'footer.php'; ?>
