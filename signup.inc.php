@@ -3,13 +3,13 @@ if (isset($_POST['signup-submit'])) {
   //require 'dbhandling.inc.php';
 
   $name = $_POST['name'];
-  $username = $_POST['username'];
-  $mail = $_POST['mail'];
+  //$username = $_POST['username'];
+  $email = $_POST['email'];
   $pwd = $_POST['pwd'];
   $pwdRepeat = $_POST['pwd-repeat'];
 
-  if (empty($name) || empty($username) || empty($mail) || empty($pwd) || empty($pwdRepeat)) {
-    header("Location: register.php?error=emptyfields&name=".$name."&username".$username."&mail=".$mail);
+  if (empty($name) || empty($email) || empty($pwd) || empty($pwdRepeat)) {
+    header("Location: register.php?error=emptyfields&name=".$name."&email=".$email);
     exit();
   }
   /*else if (!filter_var($mail, FILTER_VALIDATE_MAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username)) {
@@ -19,33 +19,33 @@ if (isset($_POST['signup-submit'])) {
     header("Location: ../register.php?error=invalidmail&name=".$name."&username".$username);
     exit();
   }*/
-  else if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+  /*else if (!preg_match("/^[a-zA-Z0-9]*$/", )) {
     header("Location: register.php?error=invalidusername&name=".$name."&mail".$mail);
     exit();
-  }
+  }*/
   elseif ($pwd !== $pwdRepeat) {
-    header("Location: register.php?error=passwordchk&name=".$name."&username".$username."&mail=".$mail);
+    header("Location: register.php?error=passwordchk&name=".$name."&email=".$email);
     exit();
   }
   else {
     $db = new SQLite3('todo.db');
-    $sql = $db->prepare('SELECT UidUsers FROM User WHERE UidUsers = :uname;');
-    $sql->bindValue(':uname', $username);
+    $sql = $db->prepare('SELECT Email FROM User WHERE Email = :uname;');
+    $sql->bindValue(':uname', $email);
     $result = $sql->execute();
     $usr = "0";
     while ($row = $result->fetchArray()) {
-      $usr = "{$row['UidUsers']}";
+      $usr = "{$row['Email']}";
     }
     if ($usr !== "0"){
-      header("Location: index.php?usrnameinuse");
+      header("Location: index.php?emailinuse");
       exit();
     }
     else {
       $salt = sha1(time());
       $encrypted_password = sha1($salt."--".$pwd);
-      $db->exec("INSERT INTO User(Name, Email, UidUsers, Password, Salt) Values('$name', '$mail', '$username', '$encrypted_password', '$salt')");?>
+      $db->exec("INSERT INTO User(Name, Email, UidUsers, Password, Salt) Values('$name', '$email', '$username', '$encrypted_password', '$salt')");?>
       <form name="login" action="login.inc.php" method="post">
-        <input type='hidden' name='username' value='<?php echo "$username" ?>'>
+        <input type='hidden' name='email' value='<?php echo "$email" ?>'>
         <input type='hidden' name='pwd' value='<?php echo "$pwd" ?>'>
         <input type="hidden" name="login-submit" value="true">
       </form>

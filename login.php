@@ -2,7 +2,7 @@
 <div class="login-form">
   <form action="login.inc.php" method="post">
     <h1>Login</h1>
-    <input type="text" name="username" placeholder="Username">
+    <input type="text" name="email" placeholder="Email">
     <br>
     <input type="password" name="pwd" placeholder="Password">
     <br>

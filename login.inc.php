@@ -1,30 +1,30 @@
 <?php
 if (isset($_POST['login-submit'])){
-  $username = $_POST['username'];
+  $email = $_POST['email'];
   $password = $_POST['pwd'];
 
-  if(empty($username) || empty($password)){
+  if(empty($email) || empty($password)){
     header("Location: index.php?error=emptyfields");
     exit();
   }
   else {
     $db = new SQLite3('todo.db');
-    $statement = $db->prepare('SELECT * FROM User WHERE UidUsers = :id;');
-    $statement->bindValue(':id', $username);
+    $statement = $db->prepare('SELECT * FROM User WHERE Email = :id;');
+    $statement->bindValue(':id', $email);
 
     $result = $statement->execute();
     while ($row = $result->fetchArray()) {
-      $username_db = "{$row['UidUsers']}";
+      $email_db = "{$row['Email']}";
       $name = "{$row['Name']}";
     }
-    if ($username_db != $username) {
+    if ($email_db != $email) {
       //echo $result;
-      //echo $username;
-      header("Location: index.php?error=nonusername");
+      //echo $email;
+      header("Location: index.php?error=nonuser");
     }
     else {
-      $sql = $db->prepare('SELECT Password, Salt FROM User WHERE UidUsers=:uname;');
-      $sql->bindValue(':uname', $username);
+      $sql = $db->prepare('SELECT Password, Salt FROM User WHERE Email=:umail;');
+      $sql->bindValue(':umail', $email);
       $result = $sql->execute();
       while ($row = $result->fetchArray()) {
         $dbpassword = "{$row['Password']}";
@@ -32,7 +32,7 @@ if (isset($_POST['login-submit'])){
       }
       if($dbpassword == sha1($salt."--".$password)){
         session_start();
-        $_SESSION['userID'] = $username;
+        $_SESSION['userID'] = $email;
         $_SESSION['userName'] = $name;
         header("Location: index.php?done=success");
       }
