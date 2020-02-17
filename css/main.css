@@ -26,6 +26,7 @@
   height: 28px;
   font-size: 25px;
   display: block;
+  border-radius: 10px;
 }
 
 li a:hover{
@@ -48,6 +49,7 @@ li a:hover{
   color: #616161;
   text-decoration: none;
   font-size: 20px;
+  border-radius: 10px;
 }
 
 .header-login p {
@@ -66,6 +68,15 @@ li a:hover{
 .login-form {
   width: 350px;
   height: 250px;
+  margin: auto;
+  padding: 10px 10px 10px 10px;
+  border-radius: 15px;
+  background: white;
+}
+
+.register-form {
+  width: 350px;
+  height: 450px;
   margin: auto;
   padding: 10px 10px 10px 10px;
   border-radius: 15px;
@@ -112,6 +123,7 @@ button {
   color: white;
   padding-top: 10px;
   padding-bottom: 10px;
+  border-radius: 5px;
 }
 
 button:hover {

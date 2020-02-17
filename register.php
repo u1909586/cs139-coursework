@@ -1,7 +1,5 @@
 <?php require 'header.php'; ?>
-
-  <main>
-    <div class="main_content">
+    <div class="register-form">
       <h1>Signup</h1>
         <form action="signup.inc.php" method="post">
           <input type="text" name="name" placeholder="Name">
@@ -12,6 +10,5 @@
           <button type="submit" name="signup-submit">Signup</button>
         </form>
     </div>
-  </main>
 
 <?php #require 'footer.php'; ?>
