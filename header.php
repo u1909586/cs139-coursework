@@ -6,13 +6,13 @@
   <head>
     <link rel="stylesheet" href="css/main.css" type="text/css" charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My ToDo Lists</title>
+    <title>Wise Split</title>
   </head>
   <body>
     <header>
       <nav class="nav-header-main">
         <a class="header-logo" href="index.php">
-          <img src="logo.jpg" alt="Logo" style="width: 50px;">
+          <img border="0" src="css/bitmap.png" alt="Wise Spliter" height="50px" style="padding-right: 5px;">
         </a>
 
         <ul>
