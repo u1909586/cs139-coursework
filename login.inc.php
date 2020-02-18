@@ -16,6 +16,7 @@ if (isset($_POST['login-submit'])){
     while ($row = $result->fetchArray()) {
       $email_db = "{$row['Email']}";
       $name = "{$row['Name']}";
+      $userID = "{$row['UserID']}";
     }
     if ($email_db != $email) {
       //echo $result;
@@ -32,8 +33,9 @@ if (isset($_POST['login-submit'])){
       }
       if($dbpassword == sha1($salt."--".$password)){
         session_start();
-        $_SESSION['userID'] = $email;
+        $_SESSION['email'] = $email;
         $_SESSION['userName'] = $name;
+        $_SESSION['userID'] = $userID;
         header("Location: index.php?done=success");
       }
       else {

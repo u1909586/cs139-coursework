@@ -3,6 +3,9 @@
   <h2>Down bellow you will see these sections - </h2>
   <ul>
     <li>Add expense</li>
+    <form class="" action="add_expense.php" method="post">
+      <button type="submit" name="add-expense">Add Expense</button>
+    </form>
     <ul>
       <li>Add people</li>
       <li>add their emails</li>
@@ -15,11 +18,17 @@
       <li>Once all done, submit, and everyone will recieve an email and website notification</li>
     </ul>
     <li>My expenses</li>
+    <form class="" action="my_expense.php" method="post">
+      <button type="submit" name="my-expense">My Expenses</button>
+    </form>
     <ul>
       <li>See what expenses you have added and the payment status of people</li>
       <li>Send out another email if it is urgent!</li>
     </ul>
     <li>Settle payment</li>
+    <form class="" action="pay_expense.php" method="post">
+      <button type="submit" name="pay-expense">Pay Expenses</button>
+    </form>
     <ul>
       <li>See what expenses you have to repay</li>
       <li>repay the expenses you want, once this is done your balance will change</li>

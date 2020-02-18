@@ -3,24 +3,26 @@ CREATE TABLE User (
   UserID INTEGER PRIMARY KEY,
   Name TEXT,
   Email TEXT,
-  UidUsers TEXT,
   Password TEXT,
   Salt TEXT
 );
 
-DROP TABLE List;
-CREATE TABLE List (
-  ListID INTEGER PRIMARY KEY,
+DROP TABLE Expenses;
+CREATE TABLE Expenses (
+  ExpenseID INTEGER PRIMARY KEY,
   UserID INTEGER,
   Name TEXT,
   DateCreated DATE
 );
 
-DROP TABLE ListItems;
-CREATE TABLE ListItems(
-  ItemID INTEGER PRIMARY KEY,
-  ListID INTEGER,
+DROP TABLE ExpenseOwe;
+CREATE TABLE ExpenseOwe(
+  PersonID INTEGER PRIMARY KEY,
+  ExpenseID INTEGER,
+  UserID INTEGER,
   Name TEXT,
-  Content TEXT,
-  Done BOOLEAN
+  Amount INTEGER,
+  Reference TEXT,
+  Email TEXT,
+  Paid BOOLEAN
 );
