@@ -1,6 +1,6 @@
 <?php require 'header.php';
 ?>
-<main>
+<div class="new-expense">
   <h2>Add new expense</h2>
   <form action="add_expense.inc.php" method="post">
     <div id="people-container">
@@ -55,4 +55,4 @@ document.getElementById('add-new-person').onclick = function () {
     i++;
 }
 </script>
-</main>
+</div>

@@ -83,6 +83,15 @@ li a:hover{
   background: white;
 }
 
+.new-expense {
+  width: 350px;
+  height: auto;
+  margin: auto;
+  padding: 10px 10px 10px 10px;
+  border-radius: 15px;
+  background: white;
+}
+
 input[type=text], input[type=password] {
   width: 100%;
   padding: 15px 20px;
