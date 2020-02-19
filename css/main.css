@@ -92,6 +92,16 @@ li a:hover{
   background: white;
 }
 
+.my_expense {
+  margin: auto;
+  margin-bottom: 10px;
+  width: 280px;
+  height: 280px;
+  border-radius: 5px;
+  background: grey;
+  padding: 10px ;
+}
+
 input[type=text], input[type=password] {
   width: 100%;
   padding: 15px 20px;

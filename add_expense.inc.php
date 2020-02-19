@@ -23,6 +23,10 @@ for ($i=1; $i <= count($array) ; $i++) {
   $stmt->bindValue(':reference', $_POST['reference'], SQLITE3_TEXT);
   $stmt->bindValue(':email',  $array[$i]['email'], SQLITE3_TEXT);
   $results = $stmt->execute();
+  $to_email_address = $array[$i]['email'];
+  $subject = $_POST['reference'];
+  $message = "Please pay ";
+  mail($to_email_address, $subject, $message);
 }
 header("Location: index.php");
 ?>

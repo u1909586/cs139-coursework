@@ -18,9 +18,7 @@
       <li>Once all done, submit, and everyone will recieve an email and website notification</li>
     </ul>
     <li>My expenses</li>
-    <form class="" action="my_expense.php" method="post">
-      <button type="submit" name="my-expense">My Expenses</button>
-    </form>
+    <?php require 'my_expense.php'; ?>
     <ul>
       <li>See what expenses you have added and the payment status of people</li>
       <li>Send out another email if it is urgent!</li>
