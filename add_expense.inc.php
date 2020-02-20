@@ -26,7 +26,7 @@ for ($i=1; $i <= count($array) ; $i++) {
   $to_email_address = $array[$i]['email'];
   $subject = $_POST['reference'];
   $message = "Please pay ";
-  mail($to_email_address, $subject, $message);
+  //mail($to_email_address, $subject, $message);
 }
 header("Location: index.php");
 ?>
