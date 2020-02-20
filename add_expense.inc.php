@@ -9,7 +9,7 @@ $stmt->bindValue(':userID', $userID, SQLITE3_INTEGER);
 $stmt->bindValue(':name', $refernce, SQLITE3_TEXT);
 $stmt->bindValue(':date_now', $date, SQLITE3_TEXT);
 $results = $stmt->execute();
-$stmt = $db->prepare("SELECT ExpenseID FROM Expenses ORDER BY ExpenseID DESC LIMIT 1");
+$stmt = $db->prepare("SELECT ExpenseID FROM Expenses");
 $result = $stmt->execute();
 while ($row = $result->fetchArray()) {
   $expenseID = "{$row['ExpenseID']}";
