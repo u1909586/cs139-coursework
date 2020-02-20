@@ -7,20 +7,14 @@
       <button type="submit" name="add-expense">Add Expense</button>
     </form>
     <ul>
-      <li>Add people</li>
-      <li>add their emails</li>
-      <li>set how musch each person is required to pay</li>
       <ul>
-        <li>in £</li>
         <li>in %</li>
       </ul>
-      <li>Add unique name to the expense - reference</li>
       <li>Once all done, submit, and everyone will recieve an email and website notification</li>
     </ul>
     <li>My expenses</li>
     <?php require 'my_expense.php'; ?>
     <ul>
-      <li>See what expenses you have added and the payment status of people</li>
       <li>Send out another email if it is urgent!</li>
     </ul>
     <li>Settle payment</li>
