@@ -15,7 +15,8 @@ while ($row = $result->fetchArray()) {
   $expenseID = "{$row['ExpenseID']}";
 }
 for ($i=1; $i <= count($array) ; $i++) {
-  $stmt = $db->prepare("INSERT INTO ExpenseOwe(ExpenseID, UserID, Name, Amount, Reference, Email, Paid) Values(:expenseID, :userID, :name, :amount, :reference, :email, FALSE)");
+  echo "here";
+  $stmt = $db->prepare("INSERT INTO ExpenseOwe(ExpenseID, UserID, Name, Amount, Reference, Email, Paid) Values(:expenseID, :userID, :name, :amount, :reference, :email, 0)");
   $stmt->bindValue(':expenseID', $expenseID, SQLITE3_INTEGER); // Change the expense ID to the correct expense ID;
   $stmt->bindValue(':userID', $_SESSION['userID'], SQLITE3_INTEGER);
   $stmt->bindValue(':name', $array[$i]['name'], SQLITE3_TEXT);
