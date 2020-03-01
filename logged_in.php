@@ -2,7 +2,7 @@
   <h1>Hello</h1>
   <h2>Down bellow you will see these sections - </h2>
   <ul>
-    <li>Add expense</li>
+    <h1>Add new expense</h1>
     <form class="" action="add_expense.php" method="post">
       <button type="submit" name="add-expense">Add Expense</button>
     </form>
@@ -12,12 +12,12 @@
       </ul>
       <li>Once all done, submit, and everyone will recieve an email and website notification</li>
     </ul>
-    <li>My expenses</li>
+    <h1>Your created expenses</h1>
     <?php require 'my_expense.php'; ?>
     <ul>
       <li>Send out another email if it is urgent!</li>
     </ul>
-    <li>Settle payment</li>
+    <h1>Settle expenses</h1>
     <form class="" action="pay_expense.php" method="post">
       <button type="submit" name="pay-expense">Pay Expenses</button>
     </form>

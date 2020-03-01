@@ -8,7 +8,7 @@ echo "<div class='my_made_exp'>";
 while ($row = $result->fetchArray()) {
   $name = "{$row['Name']}";
   $expenseID = "{$row['ExpenseID']}";
-  ?><div class='my_expense' onclick='location.href="open_my_expense.php";'><?php
+  ?><div class='my_expense'><?php
     echo "<h2>$name</h2>";
     $stmt = $db->prepare("SELECT * FROM ExpenseOwe Where ExpenseID = :userID;");
     $stmt->bindValue(':userID', $expenseID, SQLITE3_INTEGER);
@@ -17,6 +17,7 @@ while ($row = $result->fetchArray()) {
       $people = "{$row['Name']}";
       $amount = "{$row['Amount']}";
       $paid = "{$row['Paid']}";
+      $expenseID = "{$row['ExpenseID']}";
       if ($paid == 0){
         $paid = "Unpaid";
       }
@@ -25,7 +26,19 @@ while ($row = $result->fetchArray()) {
       }
       echo "<p>$people &pound$amount - $paid</p>";
     }
-    echo "</div>";
+    ?>
+    <div class='buttons'>
+      <form name="open_expense" action="open_my_expense.php" method="post">
+        <input type='hidden' name='expenseID' value='<?php echo "$expenseID"; ?>'>
+        <button type='submit' name='expenseButton'>Open Expense</button>
+      </form>
+      <form name="delete_expense" action="delete_my_expense.php" method="post">
+        <input type='hidden' name='expenseDel' value="<?php echo "$expenseID"; ?>">
+        <button type='submit' name='expenseButton' style="background-color:red;">Delete Expense</button>
+      </form>
+</div>
+</div>
+    <?php
 }
 echo "</div>";
  ?>
