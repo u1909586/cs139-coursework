@@ -18,11 +18,8 @@
       <li>Send out another email if it is urgent!</li>
     </ul>
     <h1>Settle expenses</h1>
-    <form class="" action="pay_expense.php" method="post">
-      <button type="submit" name="pay-expense">Pay Expenses</button>
-    </form>
+    <?php require 'need_to_pay_expense.php'; ?>
     <ul>
-      <li>See what expenses you have to repay</li>
       <li>repay the expenses you want, once this is done your balance will change</li>
       <li>also the head of the expense will get an email of the payment</li>
     </ul>
