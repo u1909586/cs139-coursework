@@ -28,7 +28,11 @@ while ($entry = $res->fetchArray()) {
     $sql->bindValue(':id', $id);
     $results = $sql->execute();
     while ($amount = $results->fetchArray()) {
-      $owed = $owed + "{$amount['Amount']}";
+      $paid = "{$amount['Paid']}";
+      $answer = "{$amount['Amount']}";
+      if ($paid == 0){
+        $owed = $owed + $answer;
+      }
     }
   }
 }
@@ -58,7 +62,11 @@ while ($row = $result->fetchArray()) {
   $sql->bindValue(':id', $id);
   $results = $sql->execute();
   while ($row = $results->fetchArray()) {
-    $owe = $owe + "{$row['Amount']}";
+    $paid = "{$row['Paid']}";
+    $answer = "{$row['Amount']}";
+    if ($paid == 0){
+      $owed = $owed + $answer;
+    }
   }
 }
 

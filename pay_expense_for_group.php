@@ -1,0 +1,38 @@
+<?php require 'header.php';
+$groupID = $_POST["groupID"];?>
+    <div class="new-expense">
+
+<?php
+$db = new SQLite3('todo.db');
+$stmt = $db->prepare("SELECT * FROM GroupPeople Where GroupID = :groupID AND Email = :email;");
+$stmt->bindValue(':groupID', $groupID, SQLITE3_INTEGER);
+$stmt->bindValue(':email', $_SESSION['email'], SQLITE3_TEXT);
+$result_exp = $stmt->execute();
+while ($row = $result_exp->fetchArray()) {
+  $id = "{$row['PersonGroupID']}";
+  $statement = $db->prepare("SELECT * FROM GroupExpense Where PersonGroupID = :ID;");
+  $statement->bindValue(':ID', $id, SQLITE3_INTEGER);
+  $result = $statement->execute();
+  while ($rows = $result->fetchArray()) {
+    $paid = "{$rows['Paid']}";
+    $amount = "{$rows['Amount']}";
+    $reference = "{$rows['ReferenceExpense']}";
+    $sendID = "{$rows['GExpenseID']}";
+  if ($paid == 0){
+    $paid = "Unpaid";
+    echo "<p>$reference &pound$amount - $paid</p>";
+    echo "<form name='pay_expense' action='pay_expense_for_group.inc.php' method='post'>
+      <input type='hidden' name='sendID' value='$sendID'>
+      <input type='hidden' name='groupID' value='$groupID'>
+      <button type='submit' name='button' style='background-color:green;'>Pay</button>
+    </form>";
+  }
+  else {
+    $paid = "Paid";
+    echo "<p>$reference &pound$amount - $paid</p>";
+  }
+  //echo "<p>$people &pound$amount - $paid</p>";
+  //Add if else statement to buttons to only delete if person is marked as paid
+
+}}?>
+</div>
