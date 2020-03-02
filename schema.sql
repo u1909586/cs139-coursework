@@ -23,6 +23,14 @@ CREATE TABLE GroupPeople (
   Reference TEXT
 );
 
+DROP TABLE GroupExpense;
+CREATE TABLE GroupExpense (
+  GExpenseID INTEGER PRIMARY KEY,
+  PersonGroupID INTEGER,
+  ReferenceExpense TEXT,
+  Amount INTEGER
+);
+
 DROP TABLE Expenses;
 CREATE TABLE Expenses (
   ExpenseID INTEGER PRIMARY KEY,

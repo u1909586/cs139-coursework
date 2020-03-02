@@ -18,7 +18,7 @@
      echo "<form name='pay_expense' action='pay_expense_for.php' method='post'>
        <input type='hidden' name='personID' value='$personID'>
        <input type='hidden' name='expenseID' value='$expenseID'>
-       <button type='submit' name='button' style='background-color:green;'>Paid</button>
+       <button type='submit' name='button' style='background-color:green;'>Pay</button>
      </form>";
    }
    else {

@@ -18,19 +18,14 @@
 
     <h1>Your created expenses</h1>
     <?php require 'my_expense.php'; ?>
-    <ul>
-      <li>Send out another email if it is urgent!</li>
-    </ul>
+
     <h1>Settle expenses</h1>
     <?php require 'need_to_pay_expense.php'; ?>
     <ul>
-      <li>repay the expenses you want, once this is done your balance will change</li>
       <li>also the head of the expense will get an email of the payment</li>
     </ul>
     <li>Total balance</li>
-    <ul>
-      <?php require 'total_balance.php'; ?>
-      <li>track how much money you owe or people owe you - in total or split</li>
-    </ul>
+    <?php require 'total_balance.php'; ?>
+
   </ul>
 </main>
