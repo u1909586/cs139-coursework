@@ -21,7 +21,7 @@ while ($row = $result->fetchArray()) {
     ?>
     <div class='buttons'>
       <form name="open_group" action="add_expense_group.php" method="post">
-        <input type='hidden' name='expenseID' value='<?php echo "$groupID"; ?>'>
+        <input type='hidden' name='groupID' value='<?php echo "$groupID"; ?>'>
         <button type='submit' name='expenseButton'>Add Expense</button>
       </form>
       <form name="delete_group" action="delete_group.php" method="post">

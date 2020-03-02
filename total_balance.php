@@ -13,6 +13,26 @@ while ($row = $result->fetchArray()) {
     $owed = $owed + $amount;
   }
 }
+
+$querry = $db->prepare("SELECT * FROM Groups Where UserID = :userID;");
+$querry->bindValue(':userID', $userID);
+$res = $querry->execute();
+while ($entry = $res->fetchArray()) {
+  $id = "{$entry['GroupID']}";
+  $stmt = $db->prepare("SELECT * FROM GroupPeople Where GroupID = :id;");
+  $stmt->bindValue(':id', $id);
+  $result = $stmt->execute();
+  while ($row = $result->fetchArray()) {
+    $id = "{$row['PersonGroupID']}";
+    $sql = $db->prepare("SELECT * FROM GroupExpense Where PersonGroupID = :id;");
+    $sql->bindValue(':id', $id);
+    $results = $sql->execute();
+    while ($amount = $results->fetchArray()) {
+      $owed = $owed + "{$amount['Amount']}";
+    }
+  }
+}
+
 echo "<h1> You are Owed - &pound$owed</h1>";
 
 
@@ -28,4 +48,18 @@ while ($row = $result->fetchArray()) {
     $owe = $owe + $amount;
   }
 }
+
+$stmt = $db->prepare("SELECT * FROM GroupPeople Where Email = :email;");
+$stmt->bindValue(':email', $_SESSION['email']);
+$result = $stmt->execute();
+while ($row = $result->fetchArray()) {
+  $id = "{$row['PersonGroupID']}";
+  $sql = $db->prepare("SELECT * FROM GroupExpense Where PersonGroupID = :id;");
+  $sql->bindValue(':id', $id);
+  $results = $sql->execute();
+  while ($row = $results->fetchArray()) {
+    $owe = $owe + "{$row['Amount']}";
+  }
+}
+
 echo "<h1 style='color:red;'>You owe - &pound$owe</h1>";
