@@ -12,7 +12,7 @@
     </form>
     <h1>Your created group</h1>
     <?php require 'my_group.php'; ?>
-    
+
     <h1>Groups you are in</h1>
     <?php require 'groups_in.php'; ?>
 
