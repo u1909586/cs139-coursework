@@ -1,6 +1,7 @@
 <?php
 $expenseID = $_POST["expenseDel"];
 $db = new SQLite3('todo.db');
+$stmt = $db->exec("DELETE FROM ExpenseOwe WHERE ExpenseID = $expenseID");
 $stmt = $db->exec("DELETE FROM Expenses WHERE ExpenseID = $expenseID");
 //$stmt->bindValue(':expense', $expenseID);
 //$stmt->execute();

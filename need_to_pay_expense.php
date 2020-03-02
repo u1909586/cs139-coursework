@@ -10,6 +10,7 @@ while ($row = $result->fetchArray()) {
   $name = "{$row['Name']}";
   $expenseID = "{$row['ExpenseID']}";
   $paid = "{$row['Paid']}";
+  $amount = "{$row['Amount']}";
   if ($paid == 0){
 
   ?><div class='my_expense'><?php

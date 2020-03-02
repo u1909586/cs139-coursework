@@ -7,6 +7,22 @@ CREATE TABLE User (
   Salt TEXT
 );
 
+DROP TABLE Groups;
+CREATE TABLE Groups (
+  GroupID INTEGER PRIMARY KEY,
+  UserID INTEGER,
+  Reference TEXT
+);
+
+DROP TABLE GroupPeople;
+CREATE TABLE GroupPeople (
+  PersonGroupID INTEGER PRIMARY KEY,
+  GroupID INTEGER,
+  Name TEXT,
+  Email TEXT,
+  Reference TEXT
+);
+
 DROP TABLE Expenses;
 CREATE TABLE Expenses (
   ExpenseID INTEGER PRIMARY KEY,
