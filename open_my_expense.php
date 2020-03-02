@@ -1,6 +1,6 @@
  <?php require 'header.php';
  $expenseID = $_POST["expenseID"];?>
-     <div class="register-form">
+     <div class="new-expense">
 
  <?php
  $db = new SQLite3('todo.db');
@@ -14,18 +14,19 @@
    $personID = "{$row['PersonID']}";
    if ($paid == 0){
      $paid = "Unpaid";
+     echo "<p>$people &pound$amount - $paid</p>";
+     echo "<form name='pay_expense' action='pay_expense_for.php' method='post'>
+       <input type='hidden' name='personID' value='$personID'>
+       <input type='hidden' name='expenseID' value='$expenseID'>
+       <button type='submit' name='button' style='background-color:green;'>Paid</button>
+     </form>";
    }
    else {
      $paid = "Paid";
+     echo "<p>$people &pound$amount - $paid</p>";
    }
-   echo "<p>$people &pound$amount - $paid</p>";
+   //echo "<p>$people &pound$amount - $paid</p>";
    //Add if else statement to buttons to only delete if person is marked as paid
- ?>
-<form name="pay_expense" action="pay_expense_for.php" method="post">
-  <input type='hidden' name='personID' value="<?php echo "$personID"; ?>">
-  <button type="submit" name="button" style="background-color:green;">Paid</button>
-</form>
 
-<?php
 }?>
 </div>
