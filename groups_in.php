@@ -11,16 +11,27 @@ while ($row = $result->fetchArray()) {
     $sql = $db->prepare("SELECT * FROM GroupExpense Where PersonGroupID = :id;");
     $sql->bindValue(':id', $id);
     $results = $sql->execute();
+    $flag = 0;
     while ($row = $results->fetchArray()) {
-      echo "<p>{$row['ReferenceExpense']} - &pound{$row['Amount']}</p>";
+      if ($row['Paid'] == 0) {
+        echo "<p>{$row['ReferenceExpense']} - &pound{$row['Amount']}</p>";
+        $flag = 1;
+      }
+      else {
+        echo "<p>{$row['ReferenceExpense']} - Paid</p>";
+      }
+      //echo "<p>{$row['ReferenceExpense']} - &pound{$row['Amount']}</p>";
+      //$flag = 1;
     }
     ?>
-    <div class='buttons'>
-      <form name="pay_expense" action="pay_expense_for_group.php" method="post">
-        <input type='hidden' name='groupID' value="<?php echo "$groupID"; ?>">
-        <button type='submit' name='expenseButton'>Pay Expenses</button>
-      </form>
-    </div>
+    <?php if ($flag == 1): ?>
+      <div class='buttons'>
+        <form name="pay_expense" action="pay_expense_for_group.php" method="post">
+          <input type='hidden' name='groupID' value="<?php echo "$groupID"; ?>">
+          <button type='submit' name='expenseButton'>Pay Expenses</button>
+        </form>
+      </div>
+    <?php endif; ?>
 </div>
     <?php
   }

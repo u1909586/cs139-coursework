@@ -18,12 +18,17 @@
      echo "<form name='pay_expense' action='pay_expense_for.php' method='post'>
        <input type='hidden' name='personID' value='$personID'>
        <input type='hidden' name='expenseID' value='$expenseID'>
+       <button type='submit' name='button' style='background-color:green;'>Pay all</button>
+     </form>";
+     echo "<form name='pay_expense' action='pay_expense_for_partly.inc.php' method='post'>
+       <input type='hidden' name='personID' value='$personID'>
+       <input type='hidden' name='expenseID' value='$expenseID'>
+       <input type='input' name='amount'>
        <button type='submit' name='button' style='background-color:green;'>Pay</button>
      </form>";
    }
    else {
-     $paid = "Paid";
-     echo "<p>$people &pound$amount - $paid</p>";
+     echo "<p>$people - Paid</p>";
    }
    //echo "<p>$people &pound$amount - $paid</p>";
    //Add if else statement to buttons to only delete if person is marked as paid

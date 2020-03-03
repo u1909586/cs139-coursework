@@ -65,7 +65,7 @@ while ($row = $result->fetchArray()) {
     $paid = "{$row['Paid']}";
     $answer = "{$row['Amount']}";
     if ($paid == 0){
-      $owed = $owed + $answer;
+      $owe = $owe + $answer;
     }
   }
 }

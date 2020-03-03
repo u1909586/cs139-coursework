@@ -21,15 +21,21 @@ while ($row = $result_exp->fetchArray()) {
   if ($paid == 0){
     $paid = "Unpaid";
     echo "<p>$reference &pound$amount - $paid</p>";
+
+    echo "<form name='pay_expense' action='pay_expenses_for_group_partly.inc.php' method='post'>
+      <input type='hidden' name='sendID' value='$sendID'>
+      <input type='hidden' name='groupID' value='$groupID'>
+      <input type='input' name='amount'>
+      <button type='submit' name='button' style='background-color:green;'>Pay</button>
+    </form>";
     echo "<form name='pay_expense' action='pay_expense_for_group.inc.php' method='post'>
       <input type='hidden' name='sendID' value='$sendID'>
       <input type='hidden' name='groupID' value='$groupID'>
-      <button type='submit' name='button' style='background-color:green;'>Pay</button>
+      <button type='submit' name='button' style='background-color:green;'>Pay all</button>
     </form>";
   }
   else {
-    $paid = "Paid";
-    echo "<p>$reference &pound$amount - $paid</p>";
+    echo "<p>$reference - Paid</p>";
   }
   //echo "<p>$people &pound$amount - $paid</p>";
   //Add if else statement to buttons to only delete if person is marked as paid
