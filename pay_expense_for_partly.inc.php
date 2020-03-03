@@ -3,7 +3,7 @@ $personID = $_POST["personID"];
 $expenseID = $_POST["expenseID"];
 $repay = $_POST["amount"];
 $_SESSION['notification'] = $_SESSION['expenses'];
-$db = new SQLite3('todo.db');
+$db = new SQLite3('ive_got_bills.db');
 //$stmt = $db->exec("UPDATE ExpenseOwe SET Paid = 1 WHERE PersonID = $personID");
 $stmt = $db->prepare("SELECT Amount FROM ExpenseOwe WHERE PersonID = $personID");
 $result_exp = $stmt->execute();

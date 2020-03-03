@@ -1,6 +1,6 @@
 <?php require 'header.php';
 $groupID = $_POST['groupID'];
-$db = new SQLite3('todo.db');
+$db = new SQLite3('ive_got_bills.db');
 $stmt = $db->prepare(" SELECT * FROM GroupPeople WHERE GroupID = :groupID");
 $stmt->bindValue(':groupID', $groupID, SQLITE3_INTEGER);
 $results = $stmt->execute();

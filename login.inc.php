@@ -8,7 +8,7 @@ if (isset($_POST['login-submit'])){
     exit();
   }
   else {
-    $db = new SQLite3('todo.db');
+    $db = new SQLite3('ive_got_bills.db');
     $statement = $db->prepare('SELECT * FROM User WHERE Email = :id;');
     $statement->bindValue(':id', $email);
 

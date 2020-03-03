@@ -1,7 +1,7 @@
 <?php
 $expenseID = $_POST["sendID"];
 $groupID = $_POST["groupID"];
-$db = new SQLite3('todo.db');
+$db = new SQLite3('ive_got_bills.db');
 $stmt = $db->exec("UPDATE GroupExpense SET Paid = 1 WHERE GExpenseID = $expenseID");
  $_SESSION['notification'] = $_SESSION['expenses'];
 

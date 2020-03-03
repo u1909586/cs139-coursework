@@ -4,7 +4,7 @@ $groupID = $_POST["groupID"];?>
 
 <?php
  $_SESSION['notification'] = $_SESSION['expenses'];
-$db = new SQLite3('todo.db');
+$db = new SQLite3('ive_got_bills.db');
 $stmt = $db->prepare("SELECT * FROM GroupPeople Where GroupID = :groupID AND Email = :email;");
 $stmt->bindValue(':groupID', $groupID, SQLITE3_INTEGER);
 $stmt->bindValue(':email', $_SESSION['email'], SQLITE3_TEXT);

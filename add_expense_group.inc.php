@@ -1,7 +1,7 @@
 <?php
 $array = $_POST['people'];
 $reference = $_POST['reference'];
-$db = new SQLite3('todo.db');
+$db = new SQLite3('ive_got_bills.db');
 for ($i=1; $i <= count($array); $i++) {
   //echo $array[$i]['amount'];
   //echo $array[$i]['id'];

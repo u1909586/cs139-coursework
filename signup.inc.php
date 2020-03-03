@@ -30,7 +30,7 @@ if (isset($_POST['signup-submit'])) {
     exit();
   }
   else {
-    $db = new SQLite3('todo.db');
+    $db = new SQLite3('ive_got_bills.db');
     $sql = $db->prepare('SELECT * FROM User WHERE Email = :uname;');
     $sql->bindValue(':uname', $email, SQLITE3_TEXT);
     $result = $sql->execute();

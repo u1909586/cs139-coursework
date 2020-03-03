@@ -1,5 +1,5 @@
 <?php 
-$db = new SQLite3('todo.db');
+$db = new SQLite3('ive_got_bills.db');
 $stmt = $db->prepare("SELECT Notification FROM User Where UserID = :userID;");
 $stmt->bindValue(':userID', $_SESSION['userID'], SQLITE3_INTEGER);
 $result_exp = $stmt->execute();

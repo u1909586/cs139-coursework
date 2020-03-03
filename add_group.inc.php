@@ -2,7 +2,7 @@
 $refernce = $_POST['reference'];
 $userID = $_SESSION['userID'];
 $array = $_POST['people'];
-$db = new SQLite3('todo.db');
+$db = new SQLite3('ive_got_bills.db');
 $stmt = $db->prepare("INSERT INTO Groups(UserID, Reference) Values(:userID, :reference)");
 $stmt->bindValue(':userID', $userID, SQLITE3_INTEGER);
 $stmt->bindValue(':reference', $refernce, SQLITE3_TEXT);

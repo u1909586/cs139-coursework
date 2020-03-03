@@ -1,5 +1,5 @@
 <?php
-$db = new SQLite3('todo.db');
+$db = new SQLite3('ive_got_bills.db');
 $stmt = $db->prepare("SELECT * FROM GroupPeople Where Email = :email;");
 $stmt->bindValue(':email', $_SESSION['email']);
 $result = $stmt->execute();

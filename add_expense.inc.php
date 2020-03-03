@@ -3,7 +3,7 @@ $refernce = $_POST['reference'];
 $userID = $_SESSION['userID'];
 $date = date("Y/m/d");
 $array = $_POST['people'];
-$db = new SQLite3('todo.db');
+$db = new SQLite3('ive_got_bills.db');
 $stmt = $db->prepare("INSERT INTO Expenses(UserID, Name, DateCreated) Values(:userID, :name, :date_now)");
 $stmt->bindValue(':userID', $userID, SQLITE3_INTEGER);
 $stmt->bindValue(':name', $refernce, SQLITE3_TEXT);

@@ -1,7 +1,7 @@
 <?php
 $personID = $_POST["personID"];
 $expenseID = $_POST["expenseID"];
-$db = new SQLite3('todo.db');
+$db = new SQLite3('ive_got_bills.db');
  $_SESSION['notification'] = $_SESSION['expenses'];
 $stmt = $db->exec("UPDATE ExpenseOwe SET Paid = 1 WHERE PersonID = $personID");
 
