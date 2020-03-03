@@ -22,18 +22,19 @@ while ($row = $result_exp->fetchArray()) {
   if ($paid == 0){
     $paid = "Unpaid";
     echo "<p>$reference &pound$amount - $paid</p>";
-
-    echo "<form name='pay_expense' action='pay_expenses_for_group_partly.inc.php' method='post'>
+?>
+    <form name='pay_expense' action='pay_expenses_for_group_partly.inc.php' method='post'>
       <input type='hidden' name='sendID' value='$sendID'>
       <input type='hidden' name='groupID' value='$groupID'>
       <input type='input' name='amount'>
-      <button type='submit' name='button' style='background-color:green;'>Pay</button>
-    </form>";
-    echo "<form name='pay_expense' action='pay_expense_for_group.inc.php' method='post'>
+      <button type='submit' name='button' style='background-color:green;margin-top: 10px;'>Pay</button>
+    </form>
+    <form name='pay_expense' action='pay_expense_for_group.inc.php' method='post'>
       <input type='hidden' name='sendID' value='$sendID'>
       <input type='hidden' name='groupID' value='$groupID'>
-      <button type='submit' name='button' style='background-color:green;'>Pay all</button>
-    </form>";
+      <button type='submit' name='button' style='background-color:green;margin-top: 10px;'>Pay all</button>
+    </form>
+    <?php
   }
   else {
     echo "<p>$reference - Paid</p>";

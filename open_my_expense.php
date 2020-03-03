@@ -4,7 +4,7 @@
 
  <?php
  $_SESSION['notification'] = $_SESSION['expenses'];
- 
+
  $db = new SQLite3('todo.db');
  $stmt = $db->prepare("SELECT * FROM ExpenseOwe Where ExpenseID = :expID;");
  $stmt->bindValue(':expID', $expenseID, SQLITE3_INTEGER);
@@ -17,17 +17,19 @@
    if ($paid == 0){
      $paid = "Unpaid";
      echo "<p>$people &pound$amount - $paid</p>";
-     echo "<form name='pay_expense' action='pay_expense_for.php' method='post'>
-       <input type='hidden' name='personID' value='$personID'>
-       <input type='hidden' name='expenseID' value='$expenseID'>
-       <button type='submit' name='button' style='background-color:green;'>Pay all</button>
-     </form>";
-     echo "<form name='pay_expense' action='pay_expense_for_partly.inc.php' method='post'>
+     ?>
+     <form name='pay_expense' action='pay_expense_for_partly.inc.php' method='post'>
        <input type='hidden' name='personID' value='$personID'>
        <input type='hidden' name='expenseID' value='$expenseID'>
        <input type='input' name='amount'>
-       <button type='submit' name='button' style='background-color:green;'>Pay</button>
-     </form>";
+       <button type='submit' name='button' style='background-color:green;margin-top: 10px;'>Pay</button>
+     </form>
+     <form name='pay_expense' action='pay_expense_for.php' method='post'>
+       <input type='hidden' name='personID' value='$personID'>
+       <input type='hidden' name='expenseID' value='$expenseID'>
+       <button type='submit' name='button' style='background-color:green;margin-top: 10px;'>Pay all</button>
+     </form>
+     <?php
    }
    else {
      echo "<p>$people - Paid</p>";
