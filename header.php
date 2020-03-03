@@ -22,7 +22,7 @@
         </ul>
         <?php if (isset($_SESSION['userID'])) { ?>
           <div class="header-login">
-            <p>Hello <?php echo $_SESSION['userName']; ?></p>
+            <?php require 'notification.php'; ?>
             <form action="logout.inc.php" method="post">
               <button type="submit" name="logout-submit">Logout</button>
             </form>

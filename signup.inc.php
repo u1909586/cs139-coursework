@@ -43,7 +43,7 @@ if (isset($_POST['signup-submit'])) {
     else {
       $salt = sha1(time());
       $encrypted_password = sha1($salt."--".$pwd);
-      $sql = $db->prepare("INSERT INTO User(Name, Email, Password, Salt) Values(:name, :email, :e_pwd, :salt)");
+      $sql = $db->prepare("INSERT INTO User(Name, Email, Password, Notification, Salt) Values(:name, :email, :e_pwd, 0, :salt)");
       $sql->bindValue(':name', $name, SQLITE3_TEXT);
       $sql->bindValue(':email', $email, SQLITE3_TEXT);
       $sql->bindValue(':e_pwd', $encrypted_password, SQLITE3_TEXT);

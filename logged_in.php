@@ -1,5 +1,5 @@
 <main>
-  <h1>Hello</h1>
+  <h1>Hello <?php echo $_SESSION['userName']; ?></h1>
   <h2>Down bellow you will see these sections - </h2>
   <ul>
     <h1>Add new expense</h1>
@@ -26,6 +26,7 @@
     </ul>
     <li>Total balance</li>
     <?php require 'total_balance.php'; ?>
+    <?php require 'notification.php'; ?>
 
   </ul>
 </main>

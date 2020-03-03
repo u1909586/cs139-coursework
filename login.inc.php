@@ -24,18 +24,20 @@ if (isset($_POST['login-submit'])){
       header("Location: index.php?error=nonuser");
     }
     else {
-      $sql = $db->prepare('SELECT Password, Salt FROM User WHERE Email=:umail;');
+      $sql = $db->prepare('SELECT Password, Notification, Salt FROM User WHERE Email=:umail;');
       $sql->bindValue(':umail', $email);
       $result = $sql->execute();
       while ($row = $result->fetchArray()) {
         $dbpassword = "{$row['Password']}";
         $salt = "{$row['Salt']}";
+        $notification = "{$row['Notification']}";
       }
       if($dbpassword == sha1($salt."--".$password)){
         session_start();
         $_SESSION['email'] = $email;
         $_SESSION['userName'] = $name;
         $_SESSION['userID'] = $userID;
+        $_SESSION['notification'] = $notification;
         header("Location: index.php?done=success");
       }
       else {

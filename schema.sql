@@ -4,6 +4,7 @@ CREATE TABLE User (
   Name TEXT,
   Email TEXT,
   Password TEXT,
+  Notification INTEGER,
   Salt TEXT
 );
 

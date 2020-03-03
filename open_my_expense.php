@@ -3,6 +3,8 @@
      <div class="new-expense">
 
  <?php
+ $_SESSION['notification'] = $_SESSION['expenses'];
+ 
  $db = new SQLite3('todo.db');
  $stmt = $db->prepare("SELECT * FROM ExpenseOwe Where ExpenseID = :expID;");
  $stmt->bindValue(':expID', $expenseID, SQLITE3_INTEGER);
