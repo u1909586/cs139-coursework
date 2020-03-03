@@ -1,7 +1,8 @@
 <main>
   <h1>Hello <?php echo $_SESSION['userName']; ?></h1>
   <h2>Down bellow you will see these sections - </h2>
-  <ul>
+  <h2>Total balance</h2>
+  <?php require 'total_balance.php'; ?>
     <h1>Add new expense</h1>
     <form class="" action="add_expense.php" method="post">
       <button type="submit" name="add-expense">Add Expense</button>
@@ -21,12 +22,5 @@
 
     <h1>Settle expenses</h1>
     <?php require 'need_to_pay_expense.php'; ?>
-    <ul>
-      <li>also the head of the expense will get an email of the payment</li>
-    </ul>
-    <li>Total balance</li>
-    <?php require 'total_balance.php'; ?>
-    <?php require 'notification.php'; ?>
 
-  </ul>
 </main>

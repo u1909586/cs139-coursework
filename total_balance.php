@@ -37,7 +37,7 @@ while ($entry = $res->fetchArray()) {
   }
 }
 
-echo "<h1> You are Owed - &pound$owed</h1>";
+echo "<p> You are Owed - &pound$owed</p>";
 
 
 // Owe calculations
@@ -70,4 +70,4 @@ while ($row = $result->fetchArray()) {
   }
 }
 
-echo "<h1 style='color:red;'>You owe - &pound$owe</h1>";
+echo "<p style='color:red;'>You owe - &pound$owe</p>";
