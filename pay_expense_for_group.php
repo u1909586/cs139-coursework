@@ -24,14 +24,14 @@ while ($row = $result_exp->fetchArray()) {
     echo "<p>$reference &pound$amount - $paid</p>";
 ?>
     <form name='pay_expense' action='pay_expenses_for_group_partly.inc.php' method='post'>
-      <input type='hidden' name='sendID' value='$sendID'>
-      <input type='hidden' name='groupID' value='$groupID'>
+      <input type='hidden' name='sendID' value='<?php echo "$sendID";?>'>
+      <input type='hidden' name='groupID' value='<?php echo"$groupID";?>'>
       <input type='input' name='amount'>
       <button type='submit' name='button' style='background-color:green;margin-top: 10px;'>Pay</button>
     </form>
     <form name='pay_expense' action='pay_expense_for_group.inc.php' method='post'>
-      <input type='hidden' name='sendID' value='$sendID'>
-      <input type='hidden' name='groupID' value='$groupID'>
+      <input type='hidden' name='sendID' value='<?php echo "$sendID";?>'>
+      <input type='hidden' name='groupID' value='<?php echo "$groupID";?>'>
       <button type='submit' name='button' style='background-color:green;margin-top: 10px;'>Pay all</button>
     </form>
     <?php

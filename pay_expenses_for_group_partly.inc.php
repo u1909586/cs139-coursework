@@ -1,4 +1,4 @@
-<?php
+<?php require 'header.php';
 $expenseID = $_POST["sendID"];
 $groupID = $_POST["groupID"];
 $repay = $_POST["amount"];
@@ -12,12 +12,18 @@ while ($row = $result_exp->fetchArray()) {
   $amount = "{$row['Amount']}";
 }
 $amount = $amount - $repay;
-$stmt = $db->exec("UPDATE GroupExpense SET Amount = $amount WHERE GExpenseID = $expenseID");
+if ($amount >= 0) {
+  $stmt = $db->exec("UPDATE GroupExpense SET Amount = $amount WHERE GExpenseID = $expenseID");
+} else {?>
+  <form name="return" action="pay_expense_for_group.php?error=largevalue" method="post">
+    <input type='hidden' name='groupID' value='<?php echo "$groupID"; ?>'>
+    <input type="hidden" name="login-submit" value="true">
+  </form>
+  <script type="text/javascript">
+    document.return.submit();
+  </script>
+<?php } ?>
 
-//$stmt->bindValue(':expense', $expenseID);
-//$stmt->execute();
-//echo "<h1>$expenseID</h1>";
-?>
 <form name="return" action="pay_expense_for_group.php" method="post">
   <input type='hidden' name='groupID' value='<?php echo "$groupID"; ?>'>
   <input type="hidden" name="login-submit" value="true">

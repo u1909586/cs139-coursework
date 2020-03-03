@@ -4,7 +4,7 @@ if (isset($_POST['login-submit'])){
   $password = $_POST['pwd'];
 
   if(empty($email) || empty($password)){
-    header("Location: index.php?error=emptyfields");
+    header("Location: login.php?error=emptyfields");
     exit();
   }
   else {
@@ -21,7 +21,7 @@ if (isset($_POST['login-submit'])){
     if ($email_db != $email) {
       //echo $result;
       //echo $email;
-      header("Location: index.php?error=nonuser");
+      header("Location: login.php?error=nonuser");
     }
     else {
       $sql = $db->prepare('SELECT Password, Notification, Salt FROM User WHERE Email=:umail;');
@@ -41,7 +41,7 @@ if (isset($_POST['login-submit'])){
         header("Location: index.php?done=success");
       }
       else {
-        header("Location: index.php?error=wrongpassword");
+        header("Location: login.php?error=nonuser");
       }
     }
 
@@ -50,5 +50,5 @@ if (isset($_POST['login-submit'])){
 }
 
 else {
-  header("Location: index.php?error");
+  header("Location: login.php?error=error");
 }

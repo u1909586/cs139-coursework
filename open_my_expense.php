@@ -19,14 +19,14 @@
      echo "<p>$people &pound$amount - $paid</p>";
      ?>
      <form name='pay_expense' action='pay_expense_for_partly.inc.php' method='post'>
-       <input type='hidden' name='personID' value='$personID'>
-       <input type='hidden' name='expenseID' value='$expenseID'>
+       <input type='hidden' name='personID' value='<?php echo "$personID";?>'>
+       <input type='hidden' name='expenseID' value='<?php echo "$expenseID";?>'>
        <input type='input' name='amount'>
        <button type='submit' name='button' style='background-color:green;margin-top: 10px;'>Pay</button>
      </form>
      <form name='pay_expense' action='pay_expense_for.php' method='post'>
-       <input type='hidden' name='personID' value='$personID'>
-       <input type='hidden' name='expenseID' value='$expenseID'>
+       <input type='hidden' name='personID' value='<?php echo "$personID";?>'>
+       <input type='hidden' name='expenseID' value='<?php echo "$expenseID";?>'>
        <button type='submit' name='button' style='background-color:green;margin-top: 10px;'>Pay all</button>
      </form>
      <?php

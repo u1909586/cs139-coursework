@@ -8,23 +8,25 @@ if (isset($_POST['signup-submit'])) {
   $pwd = $_POST['pwd'];
   $pwdRepeat = $_POST['pwd-repeat'];
 
+  $uppercase = preg_match('@[A-Z]@', $pwd);
+  $lowercase = preg_match('@[a-z]@', $pwd);
+  $number    = preg_match('@[0-9]@', $pwd);
+  $specialChars = preg_match('@[^\w]@', $pwd);
+
+
   if (empty($name) || empty($email) || empty($pwd) || empty($pwdRepeat)) {
-    header("Location: register.php?error=emptyfields&name=".$name."&email=".$email);
+    header("Location: register.php?error=emptyfields");
     exit();
   }
-  /*else if (!filter_var($mail, FILTER_VALIDATE_MAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username)) {
-    header("Location: ../register.php?error=invalidmailuid&name=".$name);
+  else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    header("Location: register.php?error=invalidemail");
+
+  } else if(!$uppercase || !$lowercase || !$number || !$specialChars || strlen($pwd) < 8) {
+    header("Location: register.php?error=badpswd");
   }
-  else if (!filter_var($mail, FILTER_VALIDATE_MAIL)) {
-    header("Location: ../register.php?error=invalidmail&name=".$name."&username".$username);
-    exit();
-  }*/
-  /*else if (!preg_match("/^[a-zA-Z0-9]*$/", )) {
-    header("Location: register.php?error=invalidusername&name=".$name."&mail".$mail);
-    exit();
-  }*/
+
   elseif ($pwd !== $pwdRepeat) {
-    header("Location: register.php?error=passwordchk&name=".$name."&email=".$email);
+    header("Location: register.php?error=passwordchk");
     exit();
   }
   else {

@@ -1,4 +1,4 @@
-<?php
+<?php 
 $db = new SQLite3('todo.db');
 $stmt = $db->prepare("SELECT Notification FROM User Where UserID = :userID;");
 $stmt->bindValue(':userID', $_SESSION['userID'], SQLITE3_INTEGER);
@@ -36,8 +36,7 @@ while ($row = $result->fetchArray()) {
 
 $_SESSION['expenses'] = $expenses;
 
-if ($expenses == $notification) {
-  echo "<p>No notifications</p>";
-} else {
+if ($expenses > $notification) {
   echo "<p>Check Expenses, new items</p>";
-}
+} else {
+echo "<p>No notifications</p>";}
