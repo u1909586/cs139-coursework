@@ -6,6 +6,8 @@ $result = $stmt->execute();
 echo "<div class='my_made_exp'>";
 while ($row = $result->fetchArray()) {
   $id = "{$row['PersonGroupID']}";
+  $reference = "{$row['Reference']}";
+  $groupID = "{$row['GroupID']}";
   ?><div class='my_expense'><?php
     echo "<h2>$reference</h2>";
     $sql = $db->prepare("SELECT * FROM GroupExpense Where PersonGroupID = :id;");

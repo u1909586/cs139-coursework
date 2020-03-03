@@ -1,4 +1,4 @@
-<?php
+<?php require 'header.php';
 $db = new SQLite3('todo.db');
 $notification = $_SESSION['expenses'];
 $userID = $_SESSION['userID'];
