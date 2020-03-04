@@ -2,6 +2,8 @@
 $personID = $_POST["personID"];
 $expenseID = $_POST["expenseID"];
 $repay = $_POST["amount"];
+$mode = 0;
+$mode = $_POST["mode"];
 $_SESSION['notification'] = $_SESSION['expenses'];
 $db = new SQLite3('ive_got_bills.db');
 //$stmt = $db->exec("UPDATE ExpenseOwe SET Paid = 1 WHERE PersonID = $personID");
@@ -24,19 +26,44 @@ if ($amount > 0) {
     $stmt = $db->exec("UPDATE ExpenseOwe SET Amount = $amount WHERE PersonID = $personID");
 } else if ($amount == 0) {
     $stmt = $db->exec("UPDATE ExpenseOwe SET Paid = 1 WHERE PersonID = $personID");
-} else {?>
-  <form name="return" action="open_my_expense.php?error=largevalue" method="post">
+} else {
+  if ($mode == 1) {
+    ?>
+    <form name="return" action="open_my_expense_personal.php?error=largevalue" method="post">
+      <input type='hidden' name='expenseID' value='<?php echo "$expenseID"; ?>'>
+      <input type="hidden" name="login-submit" value="true">
+    </form>
+    <script type="text/javascript">
+      document.return.submit();
+    </script>
+  <?php
+  } else {
+    ?>
+    <form name="return" action="open_my_expense.php?error=largevalue" method="post">
+      <input type='hidden' name='expenseID' value='<?php echo "$expenseID"; ?>'>
+      <input type="hidden" name="login-submit" value="true">
+    </form>
+    <script type="text/javascript">
+      document.return.submit();
+    </script>
+  <?php
+  }
+}
+if ($mode == 1) {
+  ?>
+  <form name="return" action="open_my_expense_personal.php" method="post">
     <input type='hidden' name='expenseID' value='<?php echo "$expenseID"; ?>'>
     <input type="hidden" name="login-submit" value="true">
   </form>
   <script type="text/javascript">
     document.return.submit();
-  </script>
-<?php } ?>
-<form name="return" action="open_my_expense.php" method="post">
-  <input type='hidden' name='expenseID' value='<?php echo "$expenseID"; ?>'>
-  <input type="hidden" name="login-submit" value="true">
-</form>
-<script type="text/javascript">
-  document.return.submit();
-</script>
+  </script><?php
+} else {?>
+  <form name="return" action="open_my_expense.php" method="post">
+    <input type='hidden' name='expenseID' value='<?php echo "$expenseID"; ?>'>
+    <input type="hidden" name="login-submit" value="true">
+  </form>
+  <script type="text/javascript">
+    document.return.submit();
+  </script><?php
+}

@@ -4,8 +4,9 @@ include 'security.php';
 
 $userID = $_SESSION['userID'];
 $db = new SQLite3('ive_got_bills.db');
-$stmt = $db->prepare("SELECT * FROM Groups Where UserID = :userID;");
+$stmt = $db->prepare("SELECT * FROM Groups Where UserID = :userID AND GroupID = :groupID;");
 $stmt->bindValue(':userID', $userID, SQLITE3_INTEGER);
+$stmt->bindValue(':groupID', $_POST['groupID'], SQLITE3_INTEGER);
 $result = $stmt->execute();
 echo "<div class='new-expense'>";
 while ($row = $result->fetchArray()) {

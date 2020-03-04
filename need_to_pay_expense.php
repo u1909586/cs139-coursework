@@ -27,7 +27,7 @@ while ($row = $result->fetchArray()) {
 
     ?>
     <div class='buttons'>
-      <form name="open_expense" action="open_my_expense.php" method="post">
+      <form name="open_expense" action="open_my_expense_personal.php" method="post">
         <input type='hidden' name='expenseID' value='<?php echo "$expenseID"; ?>'>
         <button type='submit' name='expenseButton'>Open Expense</button>
       </form>
