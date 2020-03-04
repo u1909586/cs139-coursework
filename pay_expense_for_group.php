@@ -3,6 +3,8 @@ $groupID = $_POST["groupID"];?>
     <div class="new-expense">
 
 <?php
+include 'security.php';
+
  $_SESSION['notification'] = $_SESSION['expenses'];
 $db = new SQLite3('ive_got_bills.db');
 $stmt = $db->prepare("SELECT * FROM GroupPeople Where GroupID = :groupID AND Email = :email;");
@@ -17,7 +19,7 @@ while ($row = $result_exp->fetchArray()) {
   while ($rows = $result->fetchArray()) {
     $paid = "{$rows['Paid']}";
     $amount = "{$rows['Amount']}";
-    $reference = "{$rows['ReferenceExpense']}";
+    $reference = h("{$rows['ReferenceExpense']}");
     $sendID = "{$rows['GExpenseID']}";
   if ($paid == 0){
     $paid = "Unpaid";

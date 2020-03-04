@@ -1,5 +1,7 @@
 <?php require 'header.php';
-$refernce = $_POST['reference'];
+include 'security.php';
+
+$refernce = h($_POST['reference']);
 $userID = $_SESSION['userID'];
 $array = $_POST['people'];
 $db = new SQLite3('ive_got_bills.db');
@@ -17,9 +19,9 @@ while ($row = $result->fetchArray()) {
 for ($i=1; $i <= count($array) ; $i++) {
   $stmt = $db->prepare("INSERT INTO GroupPeople(GroupID, Name, Email, Reference) Values(:groupID, :name, :email, :reference)");
   $stmt->bindValue(':groupID', $groupID, SQLITE3_INTEGER); // Change the expense ID to the correct expense ID;
-  $stmt->bindValue(':name', $array[$i]['name'], SQLITE3_TEXT);
-  $stmt->bindValue(':email', $array[$i]['email'], SQLITE3_TEXT);
-  $stmt->bindValue(':reference',  $_POST['reference'], SQLITE3_TEXT);
+  $stmt->bindValue(':name', h($array[$i]['name']), SQLITE3_TEXT);
+  $stmt->bindValue(':email', h($array[$i]['email']), SQLITE3_TEXT);
+  $stmt->bindValue(':reference',  h($_POST['reference']), SQLITE3_TEXT);
   $results = $stmt->execute();
 }
 header("Location: index.php");

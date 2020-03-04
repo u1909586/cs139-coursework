@@ -1,4 +1,6 @@
 <?php require 'header.php';
+include 'security.php';
+
 $groupID = $_POST['groupID'];
 $db = new SQLite3('ive_got_bills.db');
 $stmt = $db->prepare(" SELECT * FROM GroupPeople WHERE GroupID = :groupID");
@@ -13,9 +15,9 @@ $results = $stmt->execute();
       <?php
       $i = 1;
       while ($row = $results->fetchArray()) {
-        $name = "{$row['Name']}";
+        $name = h("{$row['Name']}");
         $id = "{$row['PersonGroupID']}";
-        $email = "{$row['Email']}";
+        $email = h("{$row['Email']}");
       ?>
       <h3><?php echo "$name"; ?></h3>
       <p>

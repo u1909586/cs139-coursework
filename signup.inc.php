@@ -1,10 +1,9 @@
 <?php
+include 'security.php';
 if (isset($_POST['signup-submit'])) {
-  //require 'dbhandling.inc.php';
 
-  $name = $_POST['name'];
-  //$username = $_POST['username'];
-  $email = $_POST['email'];
+  $name = h($_POST['name']);
+  $email = h($_POST['email']);
   $pwd = $_POST['pwd'];
   $pwdRepeat = $_POST['pwd-repeat'];
 
@@ -32,7 +31,7 @@ if (isset($_POST['signup-submit'])) {
   else {
     $db = new SQLite3('ive_got_bills.db');
     $sql = $db->prepare('SELECT * FROM User WHERE Email = :uname;');
-    $sql->bindValue(':uname', $email, SQLITE3_TEXT);
+    $sql->bindValue(':uname', h($email), SQLITE3_TEXT);
     $result = $sql->execute();
     $usr = "0";
     while ($row = $result->fetchArray()) {
@@ -44,7 +43,7 @@ if (isset($_POST['signup-submit'])) {
     }
     else {
       $salt = sha1(time());
-      $encrypted_password = sha1($salt."--".$pwd);
+      $encrypted_password = sha1($salt."--".h($pwd));
       $sql = $db->prepare("INSERT INTO User(Name, Email, Password, Notification, Salt) Values(:name, :email, :e_pwd, 0, :salt)");
       $sql->bindValue(':name', $name, SQLITE3_TEXT);
       $sql->bindValue(':email', $email, SQLITE3_TEXT);

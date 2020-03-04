@@ -18,7 +18,6 @@
         <ul>
           <li> <a href="index.php">Home</a></li>
           <li> <a href="about.php">About us</a></li>
-          <li> <a href="index.php">Contact</a></li>
         </ul>
         <?php if (isset($_SESSION['userID'])) { ?>
           <div class="header-login">
@@ -63,6 +62,10 @@ $(document).ready(function() {
     alert("Email already in use. Please log-in.")
   } else if (pathname.includes("error=largevalue") == true){
     alert("The value you are trying to pay is too large for the selected expense")
+  } else if (pathname.includes("error=nonnumber") == true){
+    alert("You have typed a non-number character in the amounts field, please type only numbers")
+  } else if (pathname.includes("error=negative") == true){
+    alert("You have typed a negative number in the amounts field, please type only positive numbers")
   }
 });
     var timeout = setInterval(reloadChat, 5000);

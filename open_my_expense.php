@@ -1,4 +1,6 @@
  <?php require 'header.php';
+ include 'security.php';
+
  $expenseID = $_POST["expenseID"];?>
      <div class="new-expense">
 
@@ -10,7 +12,7 @@
  $stmt->bindValue(':expID', $expenseID, SQLITE3_INTEGER);
  $result_exp = $stmt->execute();
  while ($row = $result_exp->fetchArray()) {
-   $people = "{$row['Name']}";
+   $people = h("{$row['Name']}");
    $amount = "{$row['Amount']}";
    $paid = "{$row['Paid']}";
    $personID = "{$row['PersonID']}";

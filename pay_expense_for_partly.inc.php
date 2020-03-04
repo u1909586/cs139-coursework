@@ -10,9 +10,20 @@ $result_exp = $stmt->execute();
 while ($row = $result_exp->fetchArray()) {
   $amount = "{$row['Amount']}";
 }
+if (is_numeric($repay) == false) { ?>
+    <form name="return" action="open_my_expense.php?error=nonnumber" method="post">
+      <input type='hidden' name='expenseID' value='<?php echo "$expenseID"; ?>'>
+      <input type="hidden" name="login-submit" value="true">
+    </form>
+    <script type="text/javascript">
+      document.return.submit();
+    </script>
+  <?php }
 $amount = $amount - $repay;
-if ($amount >= 0) {
+if ($amount > 0) {
     $stmt = $db->exec("UPDATE ExpenseOwe SET Amount = $amount WHERE PersonID = $personID");
+} else if ($amount == 0) {
+    $stmt = $db->exec("UPDATE ExpenseOwe SET Paid = 1 WHERE PersonID = $personID");
 } else {?>
   <form name="return" action="open_my_expense.php?error=largevalue" method="post">
     <input type='hidden' name='expenseID' value='<?php echo "$expenseID"; ?>'>

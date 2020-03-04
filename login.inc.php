@@ -1,7 +1,9 @@
 <?php
+include 'security.php';
+
 if (isset($_POST['login-submit'])){
-  $email = $_POST['email'];
-  $password = $_POST['pwd'];
+  $email = h($_POST['email']);
+  $password = h($_POST['pwd']);
 
   if(empty($email) || empty($password)){
     header("Location: login.php?error=emptyfields");
@@ -14,8 +16,8 @@ if (isset($_POST['login-submit'])){
 
     $result = $statement->execute();
     while ($row = $result->fetchArray()) {
-      $email_db = "{$row['Email']}";
-      $name = "{$row['Name']}";
+      $email_db = h("{$row['Email']}");
+      $name = h("{$row['Name']}");
       $userID = "{$row['UserID']}";
     }
     if ($email_db != $email) {

@@ -1,12 +1,14 @@
 <?php
+//include 'security.php';
+
 $db = new SQLite3('ive_got_bills.db');
 $stmt = $db->prepare("SELECT * FROM GroupPeople Where Email = :email;");
-$stmt->bindValue(':email', $_SESSION['email']);
+$stmt->bindValue(':email', h($_SESSION['email']));
 $result = $stmt->execute();
 echo "<div class='my_made_exp'>";
 while ($row = $result->fetchArray()) {
   $id = "{$row['PersonGroupID']}";
-  $reference = "{$row['Reference']}";
+  $reference = h("{$row['Reference']}");
   $groupID = "{$row['GroupID']}";
   ?><div class='my_expense'><?php
     echo "<h2>$reference</h2>";
