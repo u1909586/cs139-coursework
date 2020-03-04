@@ -1,12 +1,14 @@
 <?php
+//include 'security.php';
+
 $userID = $_SESSION['userID'];
-$db = new SQLite3('todo.db');
+$db = new SQLite3('ive_got_bills.db');
 $stmt = $db->prepare("SELECT * FROM Expenses Where UserID = :userID;");
 $stmt->bindValue(':userID', $userID, SQLITE3_INTEGER);
 $result = $stmt->execute();
 echo "<div class='my_made_exp'>";
 while ($row = $result->fetchArray()) {
-  $name = "{$row['Name']}";
+  $name = h("{$row['Name']}");
   $expenseID = "{$row['ExpenseID']}";
   ?><div class='my_expense'><?php
     echo "<h2>$name</h2>";
@@ -14,7 +16,7 @@ while ($row = $result->fetchArray()) {
     $stmt->bindValue(':userID', $expenseID, SQLITE3_INTEGER);
     $result_exp = $stmt->execute();
     while ($row = $result_exp->fetchArray()) {
-      $people = "{$row['Name']}";
+      $people = h("{$row['Name']}");
       $amount = "{$row['Amount']}";
       $paid = "{$row['Paid']}";
       $expenseID = "{$row['ExpenseID']}";

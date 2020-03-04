@@ -4,6 +4,7 @@ CREATE TABLE User (
   Name TEXT,
   Email TEXT,
   Password TEXT,
+  Notification INTEGER,
   Salt TEXT
 );
 
@@ -28,7 +29,8 @@ CREATE TABLE GroupExpense (
   GExpenseID INTEGER PRIMARY KEY,
   PersonGroupID INTEGER,
   ReferenceExpense TEXT,
-  Amount INTEGER
+  Amount INTEGER,
+  Paid BOOLEAN
 );
 
 DROP TABLE Expenses;

@@ -1,13 +1,15 @@
 <?php
+//include 'security.php';
+
 $userID = $_SESSION['userID'];
-$db = new SQLite3('todo.db');
+$db = new SQLite3('ive_got_bills.db');
 $stmt = $db->prepare("SELECT * FROM ExpenseOwe Where Email = :email;");
-$stmt->bindValue(':email', $_SESSION['email']);
+$stmt->bindValue(':email', h($_SESSION['email']));
 $result = $stmt->execute();
 echo "<div class='my_made_exp'>";
 while ($row = $result->fetchArray()) {
-  $reference = "{$row['Reference']}";
-  $name = "{$row['Name']}";
+  $reference = h("{$row['Reference']}");
+  $name = h("{$row['Name']}");
   $expenseID = "{$row['ExpenseID']}";
   $paid = "{$row['Paid']}";
   $amount = "{$row['Amount']}";

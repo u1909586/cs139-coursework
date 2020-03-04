@@ -1,58 +1,35 @@
 <?php require 'header.php';
+include 'security.php';
+
+$groupID = $_POST['groupID'];
+$db = new SQLite3('ive_got_bills.db');
+$stmt = $db->prepare(" SELECT * FROM GroupPeople WHERE GroupID = :groupID");
+$stmt->bindValue(':groupID', $groupID, SQLITE3_INTEGER);
+$results = $stmt->execute();
 ?>
 <div class="new-expense">
   <h2>Add new expense</h2>
-  <form action="add_expense.inc.php" method="post">
+  <form action="add_expense_group.inc.php" method="post">
     <div id="people-container">
       <input type="text" name="reference" placeholder="Reference">
-      <h3>Person 1:</h3>
-      <p>
-          <label>Name</label><br>
-          <input name="people[1][name]">
-      </p>
-
-      <p>
-          <label>Email</label><br>
-          <input name="people[1][email]">
-      </p>
+      <?php
+      $i = 1;
+      while ($row = $results->fetchArray()) {
+        $name = h("{$row['Name']}");
+        $id = "{$row['PersonGroupID']}";
+        $email = h("{$row['Email']}");
+      ?>
+      <h3><?php echo "$name"; ?></h3>
       <p>
           <label>Amount</label><br>
-          <input name="people[1][amount]">
+          <input name="people[<?php echo "$i";?>][amount]">
+          <input type="hidden" name="people[<?php echo "$i"; $i = $i +1;?>][id]" value="<?php echo "$id"; ?>">
       </p>
+    <?php } ?>
     </div>
-
-    <a href="javascript:;" id="add-new-person" class="add-new-person">Add! new person</a>
 
     <p>
       <button type="submit" name="button">Create expense</button>
     </p>
   </form>
-  <script>
-let i = 2;
-document.getElementById('add-new-person').onclick = function () {
-    let template = `
-        <h3>Person ${i}:</h3>
-        <p>
-            <label>Name</label><br>
-            <input name="people[${i}][name]">
-        </p>
-
-        <p>
-            <label>Email</label><br>
-            <input name="people[${i}][email]">
-        </p>
-
-        <p>
-            <label>Amount</label><br>
-            <input name="people[${i}][amount]">
-        </p>`;
-
-    let container = document.getElementById('people-container');
-    let div = document.createElement('div');
-    div.innerHTML = template;
-    container.appendChild(div);
-
-    i++;
-}
-</script>
 </div>
